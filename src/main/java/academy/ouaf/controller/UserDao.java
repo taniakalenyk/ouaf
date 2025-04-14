@@ -1,6 +1,6 @@
-package com.club.sobaka.dao;
+package academy.ouaf.controller;
 
-import com.club.sobaka.model.User;
+import academy.ouaf.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

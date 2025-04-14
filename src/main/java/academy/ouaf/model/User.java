@@ -1,4 +1,4 @@
-package com.club.sobaka.model;
+package academy.ouaf.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -23,12 +23,12 @@ public class User {
     @Column(nullable = false)
     @NotNull
     @Size(min = 2, max = 50, message = "Name must be between 2 and 50 characters")
-    private String name; // User's name
+    private String name;
 
     @Column(nullable = false)
     @NotNull
     @Size(min = 2, max = 50, message = "")
-    private String lastname; // User's lastname
+    private String lastname;
 
     @Column(unique = true, nullable = false)
     @NotNull

@@ -1,4 +1,4 @@
-package com.club.sobaka.model;
+package academy.ouaf.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -18,6 +18,6 @@ public class Dog {
     @Column(nullable = false)
     protected String name;
     protected Date birthday;
-    protected boolean sexe;
+    protected boolean sex;
     protected float weight;
 }
