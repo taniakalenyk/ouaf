@@ -2,14 +2,16 @@ package academy.ouaf.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -21,39 +23,57 @@ public class Dog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long dogId;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 20)
     @NotNull(message = "Le nom du chien ne peut pas être vide")
-    @Size(min = 2, max = 50, message = "Le nom du chien doit contenir entre 2 et 50 caractères")
+    @Size(min = 2, max = 20, message = "Le nom du chien doit contenir entre 2 et 20 caractères")
     protected String name;
 
     @Column()
-    protected Boolean sex; // true for female, false for male
+    protected Boolean gender; // true for female, false for male
 
     @Column(nullable = false)
     @NotNull(message = "La date de naissance du chien est obligatoire")
-    protected Date birthDate;
+    @PastOrPresent(message = "La date de naissance ne peut pas être dans le futur")
+    protected LocalDate birthDate;
 
-    @Column(nullable = false)
     protected String photoId;
 
-    @Column()
-    protected float weight;
+    @Positive(message = "Le poids doit être un nombre positif")
+    protected Float weight;
 
     @Column(nullable = false)
     @NotNull(message = "Veuillez indiquer si le chien est de race croisée ou non")
-    protected Boolean crossBreed;
+    protected boolean crossBreed;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 300, columnDefinition = "TEXT")
     @NotNull
     @Size(max = 300, message = "Les notes ne peuvent pas dépasser 300 caractères")
     protected String notes;
-
-    @ManyToOne
-    @JoinColumn(name = "owner_id", nullable = false)
-    protected User owner;
 
     @CreatedDate
     @Column(nullable = false, updatable = false)
     private LocalDateTime registrationDate;
 
+    @OneToMany
+    protected Set<Enrollment> enrollments;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "owner_id", nullable = false)
+    protected Owner owner;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "primary_breed_id", nullable = false)
+    protected Breed primaryBreed;
+
+    // Only if crossBreed == true
+    @ManyToOne
+    @JoinColumn(name = "secondary_breed_id")
+    protected Breed secondaryBreed;
+
+    @ManyToOne
+    @JoinColumn(name = "veterinarian_id")
+    protected Veterinarian veterinarian;
+
+    @OneToMany(mappedBy = "dog")
+    protected Set<Vaccination> vaccinations;
 }

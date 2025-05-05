@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
@@ -15,11 +16,13 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "users") // Custom table name to avoid conflicts with SQL reserved words
 @Inheritance(strategy = InheritanceType.JOINED)
+@EntityListeners(AuditingEntityListener.class) // For CreatedDate to work
+@DiscriminatorColumn(name = "user_type")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected Long id;
+    protected Long userId;
 
     @Column(nullable = false)
     @NotNull

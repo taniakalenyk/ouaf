@@ -10,14 +10,13 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "breeds")
-
 public class Breed {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long breedId;
+    private Short breedId;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true, length = 50)
     @NotNull(message = "Le nom de la race ne peut pas être vide")
     @Size(min = 2, max = 50, message = "Le nom de la race doit contenir entre 2 et 50 caractères")
     private String breedName;
