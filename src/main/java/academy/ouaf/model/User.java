@@ -47,6 +47,6 @@ public class User {
     private String photoId;
 
     @CreatedDate
-    @Column(nullable = false, updatable = false)
+    @Column(nullable = false)
     private LocalDateTime registrationDate;
 }

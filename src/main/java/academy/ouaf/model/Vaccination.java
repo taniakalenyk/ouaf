@@ -1,5 +1,6 @@
 package academy.ouaf.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -24,10 +25,12 @@ public class Vaccination {
     private LocalDate boosterDate;
 
     @ManyToOne(optional = false)
+    @JsonBackReference("vaccine")
     @JoinColumn(name = "vaccine_id", nullable = false)
     private Vaccine vaccine;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "dog_id", nullable = false)
+    @JsonBackReference("vaccination")
     private Dog dog;
 }

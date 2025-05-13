@@ -1,10 +1,13 @@
 package academy.ouaf.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -20,4 +23,13 @@ public class Breed {
     @NotNull(message = "Le nom de la race ne peut pas être vide")
     @Size(min = 2, max = 50, message = "Le nom de la race doit contenir entre 2 et 50 caractères")
     private String breedName;
+
+    @OneToMany(mappedBy = "primaryBreed")
+    @JsonBackReference("primary-breed")
+    private List<Dog> dogsOfPrimaryBreed;
+
+//    @OneToMany(mappedBy = "secondaryBreed")
+//    @JsonBackReference("secondary-breed")
+//    private List<Dog> dogsOfSecondaryBreed;
+
 }

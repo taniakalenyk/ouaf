@@ -1,5 +1,6 @@
 package academy.ouaf.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,6 +16,7 @@ public class Enrollment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonBackReference("enrollment")
     protected Long enrollmentId;
 
     @CreatedDate

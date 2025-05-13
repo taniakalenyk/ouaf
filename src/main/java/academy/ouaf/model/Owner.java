@@ -1,8 +1,11 @@
 package academy.ouaf.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -10,6 +13,8 @@ import java.util.List;
 @Entity
 @DiscriminatorValue("OWNER")
 @Table(name = "owners")
+@Getter
+@Setter
 public class Owner extends User {
 
     @Column(length = 13, nullable = false, unique = true)
@@ -36,5 +41,6 @@ public class Owner extends User {
     private String postcode;
 
     @OneToMany(mappedBy = "owner")
+    @JsonBackReference(value = "owner")
     private List<Dog> dogs;
 }

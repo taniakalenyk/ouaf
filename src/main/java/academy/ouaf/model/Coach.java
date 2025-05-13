@@ -2,12 +2,16 @@ package academy.ouaf.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Set;
 
 @Entity
 @DiscriminatorValue("COACH")
 @Table(name = "coaches")
+@Getter
+@Setter
 public class Coach extends User {
 
     @Column(length = 13, nullable = false, unique = true)

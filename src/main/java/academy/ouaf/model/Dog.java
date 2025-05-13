@@ -1,5 +1,6 @@
 package academy.ouaf.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
@@ -41,10 +42,6 @@ public class Dog {
     @Positive(message = "Le poids doit être un nombre positif")
     protected Float weight;
 
-    @Column(nullable = false)
-    @NotNull(message = "Veuillez indiquer si le chien est de race croisée ou non")
-    protected boolean crossBreed;
-
     @Column(nullable = false, length = 300, columnDefinition = "TEXT")
     @NotNull
     @Size(max = 300, message = "Les notes ne peuvent pas dépasser 300 caractères")
@@ -55,25 +52,30 @@ public class Dog {
     private LocalDateTime registrationDate;
 
     @OneToMany
+    @JsonManagedReference("enrollment")
     protected Set<Enrollment> enrollments;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "owner_id", nullable = false)
+    @JsonManagedReference("owner")
     protected Owner owner;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "primary_breed_id", nullable = false)
+    @JsonManagedReference("primary-breed")
     protected Breed primaryBreed;
 
-    // Only if crossBreed == true
-    @ManyToOne
-    @JoinColumn(name = "secondary_breed_id")
-    protected Breed secondaryBreed;
+//    @ManyToOne
+//    @JoinColumn(name = "secondary_breed_id")
+//    @JsonManagedReference("secondary-breed")
+//    protected Breed secondaryBreed;
 
     @ManyToOne
     @JoinColumn(name = "veterinarian_id")
+    @JsonManagedReference("veterinarian")
     protected Veterinarian veterinarian;
 
     @OneToMany(mappedBy = "dog")
+    @JsonManagedReference("vaccination")
     protected Set<Vaccination> vaccinations;
 }

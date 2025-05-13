@@ -1,5 +1,6 @@
 package academy.ouaf.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
@@ -55,6 +56,7 @@ public class Veterinarian {
     private String clinicPostcode;
 
     @OneToMany(mappedBy = "veterinarian")
+    @JsonBackReference("veterinarian")
     private List<Dog> dogs;
 
 }

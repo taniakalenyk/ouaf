@@ -1,5 +1,6 @@
 package academy.ouaf.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -24,5 +25,6 @@ public class Vaccine {
     private String vaccineName;
 
     @OneToMany(mappedBy = "vaccine")
+    @JsonManagedReference("vaccine")
     private Set<Vaccination> vaccinations;
 }

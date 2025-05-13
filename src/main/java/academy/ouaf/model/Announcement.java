@@ -2,11 +2,15 @@ package academy.ouaf.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name="announcement")
+@Getter
+@Setter
 public class Announcement {
 
     @Id
