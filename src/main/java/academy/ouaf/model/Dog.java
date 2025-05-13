@@ -1,5 +1,6 @@
 package academy.ouaf.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -9,6 +10,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -18,6 +20,7 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "dogs")
+@EntityListeners(AuditingEntityListener.class)
 public class Dog {
 
     @Id
@@ -57,7 +60,7 @@ public class Dog {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "owner_id", nullable = false)
-    @JsonManagedReference("owner")
+    @JsonBackReference("dog-owner")
     protected Owner owner;
 
     @ManyToOne(optional = false)
@@ -72,7 +75,7 @@ public class Dog {
 
     @ManyToOne
     @JoinColumn(name = "veterinarian_id")
-    @JsonManagedReference("veterinarian")
+    @JsonManagedReference("dog-veterinarian")
     protected Veterinarian veterinarian;
 
     @OneToMany(mappedBy = "dog")

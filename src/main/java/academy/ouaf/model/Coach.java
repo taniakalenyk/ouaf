@@ -1,5 +1,6 @@
 package academy.ouaf.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
@@ -24,6 +25,7 @@ public class Coach extends User {
             joinColumns = @JoinColumn(name = "coach_id"),           // owning side
             inverseJoinColumns = @JoinColumn(name = "type_id")      // referenced type
     )
+    @JsonManagedReference(value = "coach-type")
     protected Set<Type> type;
 
 }

@@ -1,5 +1,6 @@
 package academy.ouaf.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,6 +24,7 @@ public class AgeRange {
     protected Short ageMax;
 
     @ManyToMany(mappedBy = "ageRanges")
+    @JsonBackReference(value = "type-age")
     private Set<Type> types;
 
     @OneToMany

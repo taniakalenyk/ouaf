@@ -1,6 +1,6 @@
 package academy.ouaf.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Size;
@@ -25,7 +25,7 @@ public class Owner extends User {
     @Size(min = 2, max = 50, message = "L'adresse doit contenir entre 2 et 50 caractères")
     private String address;
 
-    @Column(length = 300, nullable = false, columnDefinition = "TEXT")
+    @Column(length = 300, columnDefinition = "TEXT")
     @Size(min = 2, max = 300, message = "Ce champs doit contenir entre 2 et 300 caractères")
     private String about;
 
@@ -40,7 +40,7 @@ public class Owner extends User {
     @Size(min = 2, max = 10, message = "Le code postal doit contenir entre 2 et 10 caractères")
     private String postcode;
 
-    @OneToMany(mappedBy = "owner")
-    @JsonBackReference(value = "owner")
-    private List<Dog> dogs;
+//    @OneToMany(mappedBy = "owner")
+//    @JsonManagedReference(value = "dog-owner")
+//    private List<Dog> dogs;
 }
