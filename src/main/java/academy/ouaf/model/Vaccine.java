@@ -25,6 +25,5 @@ public class Vaccine {
     private String vaccineName;
 
     @OneToMany(mappedBy = "vaccine")
-    @JsonManagedReference("vaccine")
     private Set<Vaccination> vaccinations;
 }

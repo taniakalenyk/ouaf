@@ -25,7 +25,6 @@ public class Coach extends User {
             joinColumns = @JoinColumn(name = "coach_id"),           // owning side
             inverseJoinColumns = @JoinColumn(name = "type_id")      // referenced type
     )
-    @JsonManagedReference(value = "coach-type")
     protected Set<Type> type;
 
 }

@@ -45,8 +45,7 @@ public class Dog {
     @Positive(message = "Le poids doit être un nombre positif")
     protected Float weight;
 
-    @Column(nullable = false, length = 300, columnDefinition = "TEXT")
-    @NotNull
+    @Column(length = 300, columnDefinition = "TEXT")
     @Size(max = 300, message = "Les notes ne peuvent pas dépasser 300 caractères")
     protected String notes;
 
@@ -55,30 +54,24 @@ public class Dog {
     private LocalDateTime registrationDate;
 
     @OneToMany
-    @JsonManagedReference("enrollment")
     protected Set<Enrollment> enrollments;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "owner_id", nullable = false)
-    @JsonBackReference("dog-owner")
     protected Owner owner;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "primary_breed_id", nullable = false)
-    @JsonManagedReference("primary-breed")
     protected Breed primaryBreed;
 
-//    @ManyToOne
-//    @JoinColumn(name = "secondary_breed_id")
-//    @JsonManagedReference("secondary-breed")
-//    protected Breed secondaryBreed;
+    @ManyToOne
+    @JoinColumn(name = "secondary_breed_id")
+    protected Breed secondaryBreed;
 
     @ManyToOne
     @JoinColumn(name = "veterinarian_id")
-    @JsonManagedReference("dog-veterinarian")
     protected Veterinarian veterinarian;
 
     @OneToMany(mappedBy = "dog")
-    @JsonManagedReference("vaccination")
     protected Set<Vaccination> vaccinations;
 }

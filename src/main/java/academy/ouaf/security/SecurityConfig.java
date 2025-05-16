@@ -2,7 +2,7 @@ package academy.ouaf.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -15,7 +15,6 @@ import java.util.List;
 
 @Configuration
 @EnableWebSecurity
-@EnableJpaAuditing
 public class SecurityConfig {
 
 //    @Bean
@@ -27,7 +26,8 @@ public class SecurityConfig {
 //                // We're not affected by the CSRF vulnerability because the link used for authentication is a cookie.
 //                .cors(c -> c.configurationSource(corsConfigurationSource()))
 //                .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-////                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+
+    /// /                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
 //                .build();
 //
 //    }
@@ -44,8 +44,6 @@ public class SecurityConfig {
 //        return source;
 //
 //    }
-
-
     @Bean
     public SecurityFilterChain configureAuthentication(HttpSecurity http) throws Exception {
         return http
@@ -53,21 +51,20 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/**").permitAll()
-                        .anyRequest().authenticated()
+//                        .anyRequest().authenticated()
                 )
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .build();
     }
 
-        public CorsConfigurationSource corsConfigurationSource() {
-            CorsConfiguration corsConfiguration = new CorsConfiguration();
-            corsConfiguration.setAllowedOrigins(List.of("*"));
-            corsConfiguration.setAllowedMethods(List.of("GET", "POST", "DELETE", "PUT", "PATCH"));
-            corsConfiguration.setAllowedHeaders(List.of("*"));
-            corsConfiguration.setAllowCredentials(true); // Optional if using auth
-
-            UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-            source.registerCorsConfiguration("/**", corsConfiguration);
-            return source;
-        }
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
+        corsConfiguration.setAllowedOrigins(List.of("*"));
+        corsConfiguration.setAllowedMethods(List.of("GET", "POST", "DELETE", "PUT", "PATCH"));
+        corsConfiguration.setAllowedHeaders(List.of("*"));
+        //corsConfiguration.setAllowCredentials(true); // Optional if using auth
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", corsConfiguration);
+        return source;
+    }
 }

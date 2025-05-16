@@ -16,7 +16,6 @@ public class Enrollment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonBackReference("enrollment")
     protected Long enrollmentId;
 
     @CreatedDate

@@ -25,11 +25,9 @@ public class Breed {
     private String breedName;
 
     @OneToMany(mappedBy = "primaryBreed")
-    @JsonBackReference("primary-breed")
     private List<Dog> dogsOfPrimaryBreed;
 
-//    @OneToMany(mappedBy = "secondaryBreed")
-//    @JsonBackReference("secondary-breed")
-//    private List<Dog> dogsOfSecondaryBreed;
+    @OneToMany(mappedBy = "secondaryBreed")
+    private List<Dog> dogsOfSecondaryBreed;
 
 }

@@ -56,7 +56,6 @@ public class Veterinarian {
     private String clinicPostcode;
 
     @OneToMany(mappedBy = "veterinarian")
-    @JsonBackReference("dog-veterinarian")
     private List<Dog> dogs;
 
 }

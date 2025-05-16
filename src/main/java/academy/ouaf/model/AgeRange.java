@@ -24,7 +24,6 @@ public class AgeRange {
     protected Short ageMax;
 
     @ManyToMany(mappedBy = "ageRanges")
-    @JsonBackReference(value = "type-age")
     private Set<Type> types;
 
     @OneToMany

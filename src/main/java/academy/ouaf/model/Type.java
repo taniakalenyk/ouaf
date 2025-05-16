@@ -28,7 +28,6 @@ public class Type {
     private List<Template> templates;
 
     @ManyToMany(mappedBy = "type")
-    @JsonBackReference(value = "coach-type")
     private Set<Coach> coaches;
 
     @ManyToMany(fetch = FetchType.LAZY)
@@ -37,6 +36,5 @@ public class Type {
             joinColumns = @JoinColumn(name = "type_id"),           // owning side
             inverseJoinColumns = @JoinColumn(name = "dog_age_id")      // referenced type
     )
-    @JsonManagedReference(value = "type-age")
     protected Set<AgeRange> ageRanges;
 }

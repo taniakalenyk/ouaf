@@ -47,6 +47,10 @@ public class User {
     private String photoId;
 
     @CreatedDate
-    @Column(nullable = false)
+    @Column(nullable = false, updatable = false)
     private LocalDateTime registrationDate;
+
+
+    // TODO to integrate verificationEmailToken
+    protected String verificationEmailToken;
 }

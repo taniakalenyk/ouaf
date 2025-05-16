@@ -1,6 +1,5 @@
 package academy.ouaf.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Size;
@@ -8,7 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @DiscriminatorValue("OWNER")
@@ -17,7 +16,7 @@ import java.util.List;
 @Setter
 public class Owner extends User {
 
-    @Column(length = 13, nullable = false, unique = true)
+    @Column(length = 13)
     @Size(max = 13, message = "Veuillez rentrer 13 chiffres maximum")
     private String phoneNumber;
 
@@ -40,7 +39,6 @@ public class Owner extends User {
     @Size(min = 2, max = 10, message = "Le code postal doit contenir entre 2 et 10 caractères")
     private String postcode;
 
-//    @OneToMany(mappedBy = "owner")
-//    @JsonManagedReference(value = "dog-owner")
-//    private List<Dog> dogs;
+    @OneToMany(mappedBy = "owner")
+    private Set<Dog> dogs;
 }
