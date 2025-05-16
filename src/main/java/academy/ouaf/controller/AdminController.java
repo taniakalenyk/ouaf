@@ -1,6 +1,6 @@
 package academy.ouaf.controller;
 
-import academy.ouaf.dao.AdminDao;
+import academy.ouaf.dao.users.AdminDao;
 import academy.ouaf.model.Admin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,6 +12,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/admins")
+@CrossOrigin
 public class AdminController {
 
     private final AdminDao adminDao;

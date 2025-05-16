@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/vaccines")
+@CrossOrigin
 public class VaccineController {
 
     private final VaccineDao vaccineDao;

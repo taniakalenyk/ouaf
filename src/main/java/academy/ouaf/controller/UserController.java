@@ -1,6 +1,6 @@
 package academy.ouaf.controller;
 
-import academy.ouaf.dao.UserDao;
+import academy.ouaf.dao.users.UserDao;
 import academy.ouaf.model.User;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8080/")
+@CrossOrigin
 @RequestMapping("api/users")
 public class UserController {
 

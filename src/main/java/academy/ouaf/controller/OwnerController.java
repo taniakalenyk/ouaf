@@ -1,6 +1,6 @@
 package academy.ouaf.controller;
 
-import academy.ouaf.dao.OwnerDao;
+import academy.ouaf.dao.users.OwnerDao;
 import academy.ouaf.model.Owner;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +14,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("api/owners")
+@CrossOrigin
 public class OwnerController {
 
     private final OwnerDao ownerDao;

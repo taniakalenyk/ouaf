@@ -1,6 +1,6 @@
 package academy.ouaf.controller;
 
-import academy.ouaf.dao.CoachDao;
+import academy.ouaf.dao.users.CoachDao;
 import academy.ouaf.model.Coach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/coaches")
+@CrossOrigin
 public class CoachController {
 
     private final CoachDao coachDao;

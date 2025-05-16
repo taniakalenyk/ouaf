@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/types")
+@CrossOrigin
 public class TypeController {
 
     private final TypeDao typeDao;

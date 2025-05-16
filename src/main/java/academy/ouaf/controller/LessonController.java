@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/lessons")
+@CrossOrigin
 public class LessonController {
 
     private final LessonDao lessonDao;

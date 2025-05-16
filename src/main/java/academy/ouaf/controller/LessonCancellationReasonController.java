@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/lesson-cancellation-reasons")
+@CrossOrigin
 public class LessonCancellationReasonController {
 
     private final LessonCancellationReasonDao lessonCancellationReasonDao;

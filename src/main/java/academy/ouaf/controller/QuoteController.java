@@ -13,6 +13,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("api/quotes")
+@CrossOrigin
 public class QuoteController {
 
     private final QuoteDao quoteDao;

@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/templates")
+@CrossOrigin
 public class TemplateController {
 
     private final TemplateDao templateDao;

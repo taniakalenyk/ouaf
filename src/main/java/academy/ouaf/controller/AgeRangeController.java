@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/age-ranges")
+@CrossOrigin
 public class AgeRangeController {
 
     private final AgeRangeDao ageRangeDao;

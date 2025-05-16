@@ -8,9 +8,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("api/dogs")
+@CrossOrigin
 public class DogController {
 
     private final DogDao dogDao;
@@ -23,24 +25,25 @@ public class DogController {
     @GetMapping
     public ResponseEntity<List<Dog>> getAllDogs() {
         List<Dog> dogs = dogDao.findAll();
-        return new ResponseEntity<>(dogs,HttpStatus.OK);
+        return new ResponseEntity<>(dogs, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
+    // @JsonView(DogView
     public ResponseEntity<Dog> getDogById(@PathVariable Long id) {
-            Dog dog = dogDao.findById(id).orElse(null);
-            if (dog != null) {
-                return new ResponseEntity<>(dog, HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
+        Optional<Dog> optionalDog = dogDao.findById(id);
+        if (optionalDog.isPresent()) {
+            return new ResponseEntity<>(optionalDog.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
 
-        @PostMapping
-        public ResponseEntity<Dog> createDog(@RequestBody Dog dog) {
-            Dog newDog = dogDao.save(dog);
-            return new ResponseEntity<>(newDog, HttpStatus.CREATED);
-        }
+    @PostMapping
+    public ResponseEntity<Dog> createDog(@RequestBody Dog dog) {
+        Dog newDog = dogDao.save(dog);
+        return new ResponseEntity<>(newDog, HttpStatus.CREATED);
+    }
 
     // PICTURE
 
