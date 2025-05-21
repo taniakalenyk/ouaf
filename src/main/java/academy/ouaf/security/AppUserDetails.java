@@ -1,8 +1,5 @@
 package academy.ouaf.security;
 
-import academy.ouaf.model.Admin;
-import academy.ouaf.model.Coach;
-import academy.ouaf.model.Owner;
 import academy.ouaf.model.User;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
@@ -22,15 +19,7 @@ public class AppUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if (user instanceof Admin) {
-            return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"));
-        } else if (user instanceof Owner) {
-            return List.of(new SimpleGrantedAuthority("ROLE_OWNER"));
-        } else if (user instanceof Coach) {
-            return List.of(new SimpleGrantedAuthority("ROLE_COACH"));
-        } else {
-            return List.of();
-        }
+        return List.of(new SimpleGrantedAuthority("ROLE_" + user.getRole()));
     }
 
     @Override

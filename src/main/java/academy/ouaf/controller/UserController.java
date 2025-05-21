@@ -1,6 +1,6 @@
 package academy.ouaf.controller;
 
-import academy.ouaf.dao.users.UserDao;
+import academy.ouaf.dao.UserDao;
 import academy.ouaf.model.User;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

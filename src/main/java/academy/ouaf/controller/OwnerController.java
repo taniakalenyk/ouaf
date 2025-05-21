@@ -1,7 +1,7 @@
 package academy.ouaf.controller;
-
-import academy.ouaf.dao.users.OwnerDao;
+import academy.ouaf.dao.UserDao;
 import academy.ouaf.model.Owner;
+import academy.ouaf.model.User;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,31 +17,33 @@ import java.util.Optional;
 @CrossOrigin
 public class OwnerController {
 
-    private final OwnerDao ownerDao;
+    private final UserDao userDao;
 
     @Autowired
-    public OwnerController(OwnerDao ownerDao) {
-        this.ownerDao = ownerDao;
+    public OwnerController(UserDao userDao) {
+        this.userDao = userDao;
     }
 
     @GetMapping
-    public ResponseEntity<List<Owner>> getAllOwners() {
-        List<Owner> owners = ownerDao.findAll();
+    public ResponseEntity<List<User>> getAllOwners() {
+        List<User> owners = userDao.findByRole("OWNER");
         return new ResponseEntity<>(owners, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Owner> getOwnerById(@PathVariable Long id) {
-        Optional<Owner> owner = ownerDao.findById(id);
-        return owner.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
+    public ResponseEntity<User> getOwnerById(@PathVariable Long id) {
+        Optional<User> optionalUser = userDao.findById(id);
+
+        return optionalUser
+                .filter(user -> "OWNER".equals(user.getRole()))
+                .map(owner -> new ResponseEntity<>(owner, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping
-    public ResponseEntity<Owner> createOwner(@RequestBody @Valid Owner owner) {
+    public ResponseEntity<User> createOwner(@RequestBody @Valid Owner owner) {
         owner.setRegistrationDate(LocalDateTime.now());
-        Owner newOwner = ownerDao.save(owner);
-        return new ResponseEntity<>(newOwner, HttpStatus.CREATED);
+        return new ResponseEntity<>(userDao.save(owner), HttpStatus.CREATED);
     }
 
 
@@ -62,31 +64,41 @@ public class OwnerController {
 
 
     @PutMapping("/{id}")
-    public ResponseEntity<Owner> updateOwner(@PathVariable Long id, @RequestBody Owner ownerDetails) {
-        Optional<Owner> optionalOwner = ownerDao.findById(id);
-        if (optionalOwner.isPresent()) {
-            Owner owner = optionalOwner.get();
-            owner.setFirstName(ownerDetails.getFirstName());
-            owner.setLastName(ownerDetails.getLastName());
-            owner.setEmail(ownerDetails.getEmail());
-            owner.setPassword(ownerDetails.getPassword());
-            owner.setPhotoId(ownerDetails.getPhotoId());
-            
-            Owner updatedOwner = ownerDao.save(owner);
-            return new ResponseEntity<>(updatedOwner, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    public ResponseEntity<User> updateOwner(@PathVariable Long id, @RequestBody Owner ownerDetails) {
+        Optional<User> updatedUser = userDao.findById(id)
+                .filter(user -> "OWNER".equals(user.getRole()))
+                .map(user -> {
+                    user.setFirstName(ownerDetails.getFirstName());
+                    user.setLastName(ownerDetails.getLastName());
+                    user.setEmail(ownerDetails.getEmail());
+                    user.setPassword(ownerDetails.getPassword());
+                    user.setPhotoId(ownerDetails.getPhotoId());
+
+                    if (user instanceof Owner owner) {
+                        owner.setPhoneNumber(ownerDetails.getPhoneNumber());
+                        owner.setAddress(ownerDetails.getAddress());
+                        owner.setAbout(ownerDetails.getAbout());
+                        owner.setBirthdate(ownerDetails.getBirthdate());
+                        owner.setCity(ownerDetails.getCity());
+                        owner.setPostcode(ownerDetails.getPostcode());
+                    }
+
+                    return user;
+                })
+                .map(userDao::save);
+
+        return updatedUser
+                .map(user -> new ResponseEntity<>(user, HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteOwner(@PathVariable Long id) {
-        Optional<Owner> owner = ownerDao.findById(id);
-        if (owner.isPresent()) {
-            ownerDao.deleteById(id);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return userDao.findById(id)
+                .filter(user -> "OWNER".equals(user.getRole()))
+                .map(user -> {
+                    userDao.delete(user);
+                    return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+                }).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 }

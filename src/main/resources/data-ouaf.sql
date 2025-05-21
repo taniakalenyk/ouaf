@@ -109,31 +109,22 @@ VALUES
 
 INSERT INTO users (user_id, user_type, first_name, last_name, email, password, photo_id, registration_date)
 VALUES
-    (8, 'OWNER', 'Marie', 'Dupont', 'marie.dupont@example.com', 'hashedpassword123', 'photo123.jpg', NOW()),
-    (2, 'OWNER', 'Jean', 'Martin', 'jean.martin@example.com', 'hashedpassword456', 'photo124.jpg', NOW()),
-    (3, 'OWNER', 'Sophie', 'Bernard', 'sophie.bernard@example.com', 'hashedpassword789', 'photo125.jpg', NOW()),
-    (4, 'OWNER', 'Claire', 'Dubois', 'claire.dubois@example.com', 'hashedpassword321', 'photo126.jpg', NOW()),
-    (5, 'COACH', 'Luc', 'Moreau', 'luc.moreau@example.com', 'hashedcoach123', 'coachphoto1.jpg', NOW()),
-    (6, 'COACH', 'Isabelle', 'Renard', 'isabelle.renard@example.com', 'hashedcoach456', 'coachphoto2.jpg', NOW()),
-    (7, 'COACH', 'Thomas', 'Leclerc', 'thomas.leclerc@example.com', 'hashedcoach789', 'coachphoto3.jpg', NOW()),
-    (1, 'ADMIN', 'Tetiana', 'Lombardi', 'tania@example.com', 'Test321', 'adminphoto1.jpg', NOW());
-
-INSERT INTO owners (user_id, phone_number, address, about, birthdate, city, postcode)
-VALUES
-    (8, '0601020304', '123 Rue de Paris', 'Je suis passionnée par les chiens.', '1990-05-10', 'Paris', '75001'),
-    (2, '0611121314', '45 Avenue des Champs', 'Amoureux des chiens de toutes tailles.', '1985-08-22', 'Lyon', '69001'),
-    (3, '0622233445', '78 Boulevard Haussmann', '', '1992-11-05', 'Marseille', '13001'),
-    (4, '0633344556', '12 Rue Victor Hugo', 'J\'ai adopté trois chiens et adore les promenades en groupe.', '1995-02-14', 'Toulouse', '31000');
-
-INSERT INTO coaches (user_id, phone_number)
-VALUES
-    (5, '0644455566'),
-    (6, '0655566677'),
-    (7, '0666677788');
+    (2, 'COACH', 'Jean', 'Martin', 'coach@ouaf.academy', '$2a$10$ojxpKQ0/KtPOeAL46hSIhuhzluboDuck3c5dfTEO6gYawHKReMFNG', 'photo124.jpg', NOW()),
+    (3, 'OWNER', 'Sophie', 'Bernard', 'owner@ouaf.academy', '$2a$10$ojxpKQ0/KtPOeAL46hSIhuhzluboDuck3c5dfTEO6gYawHKReMFNG', 'photo125.jpg', NOW()),
+    (1, 'ADMIN', 'Tetiana', 'Lombardi', 'admin@ouaf.academy', '$2a$10$ojxpKQ0/KtPOeAL46hSIhuhzluboDuck3c5dfTEO6gYawHKReMFNG', 'adminphoto1.jpg', NOW());
 
 INSERT INTO admin (user_id)
 VALUES
     (1);
+
+INSERT INTO owners (user_id, phone_number, address, about, birthdate, city, postcode)
+VALUES
+    (2, '0611121314', '45 Avenue des Champs', 'Amoureux des chiens de toutes tailles.', '1985-08-22', 'Lyon', '69001');
+
+INSERT INTO coaches (user_id, phone_number)
+VALUES
+    (3, '0644455566');
+
 
 INSERT INTO dogs (
     name,
@@ -196,15 +187,11 @@ VALUES
 -- Insert into coach_specialization join table to establish the many-to-many relationship between Coach and Type
 INSERT INTO coach_specialization (coach_id, type_id)
 VALUES
-    (5, 1), -- Luc Moreau - Dressage de Base pour Chiots
-    (5, 2), -- Luc Moreau - Dressage à la Laisse et au Collier
-    (5, 3), -- Luc Moreau - Dressage Avancé
-    (6, 4), -- Isabelle Renard - Cours d'Agilité
-    (6, 5), -- Isabelle Renard - Modification du Comportement
-    (6, 8), -- Isabelle Renard - Cours de Socialisation pour Chiots
-    (7, 6), -- Thomas Leclerc - Formation pour Chiens Thérapeutes
-    (7, 7), -- Thomas Leclerc - Formation pour Chiens de Protection
-    (7, 9); -- Thomas Leclerc - Atelier de Formation Spécialisé
+    (3, 1), -- Luc Moreau - Dressage de Base pour Chiots
+    (3, 2), -- Luc Moreau - Dressage à la Laisse et au Collier
+    (3, 3), -- Luc Moreau - Dressage Avancé
+    (3, 4), -- Isabelle Renard - Cours d'Agilité
+    (3, 5);
 
 INSERT INTO vaccines (vaccine_id, vaccine_name)
 VALUES
