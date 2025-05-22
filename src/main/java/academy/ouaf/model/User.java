@@ -22,6 +22,7 @@ import java.time.LocalDateTime;
 @DiscriminatorColumn(name = "user_type")
 public class User {
 
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long userId;
