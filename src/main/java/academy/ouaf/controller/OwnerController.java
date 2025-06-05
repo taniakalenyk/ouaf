@@ -2,6 +2,8 @@ package academy.ouaf.controller;
 import academy.ouaf.dao.UserDao;
 import academy.ouaf.model.Owner;
 import academy.ouaf.model.User;
+import academy.ouaf.views.OwnerView;
+import com.fasterxml.jackson.annotation.JsonView;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+
+
 
 @RestController
 @RequestMapping("api/owners")
@@ -25,12 +29,14 @@ public class OwnerController {
     }
 
     @GetMapping
+    @JsonView(OwnerView.class)
     public ResponseEntity<List<User>> getAllOwners() {
         List<User> owners = userDao.findByRole("OWNER");
         return new ResponseEntity<>(owners, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
+    @JsonView(OwnerView.class)
     public ResponseEntity<User> getOwnerById(@PathVariable Long id) {
         Optional<User> optionalUser = userDao.findById(id);
 

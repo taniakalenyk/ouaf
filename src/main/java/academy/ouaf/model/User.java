@@ -1,6 +1,8 @@
 package academy.ouaf.model;
 
+import academy.ouaf.views.LessonView;
 import academy.ouaf.views.LoginView;
+import academy.ouaf.views.OwnerView;
 import com.fasterxml.jackson.annotation.JsonView;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -27,20 +29,22 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long userId;
 
+    @JsonView({OwnerView.class, LessonView.class})
     @Column(nullable = false)
     @NotNull
     @Size(min = 2, max = 50, message = "Le prénom doit contenir entre 2 et 50 caractères")
     private String firstName;
 
+    @JsonView({OwnerView.class, LessonView.class})
     @Column(nullable = false)
     @NotNull
     @Size(min = 2, max = 50, message = "Le nom doit contenir entre 2 et 50 caractères")
     private String lastName;
 
+    @JsonView({OwnerView.class, LoginView.class})
     @Column(unique = true, nullable = false)
     @Email(message = "Format d'email invalide")
     @NotNull(groups = LoginView.class)
-    @JsonView(LoginView.class)
     private String email;
 
     @Column(nullable = false)
@@ -48,6 +52,7 @@ public class User {
     @JsonView(LoginView.class)
     private String password;
 
+    @JsonView(OwnerView.class)
     @Column()
     private String photoId;
 
@@ -58,6 +63,7 @@ public class User {
     @Column(name = "verification_email_token")
     protected String verificationEmailToken = null;
 
+    @JsonView(OwnerView.class)
     @Getter
     @Column(name = "user_type", insertable = false, updatable = false)
     protected String role;

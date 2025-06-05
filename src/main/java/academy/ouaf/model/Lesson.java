@@ -1,5 +1,7 @@
 package academy.ouaf.model;
 
+import academy.ouaf.views.LessonView;
+import com.fasterxml.jackson.annotation.JsonView;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
@@ -17,36 +19,44 @@ public class Lesson {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonView(LessonView.class)
     private Long lessonId;
 
     @Column(nullable = false)
     @NotNull
     @Future(message = "La date du cours doit être dans le futur")
+    @JsonView(LessonView.class)
     private LocalDateTime startDateTime;
 
     @Column(nullable = false)
     @NotNull
     @Future(message = "La date du cours doit être dans le futur")
+    @JsonView(LessonView.class)
     private LocalDateTime endDateTime;
 
     @Column(length = 255)
+    @JsonView(LessonView.class)
     private String location;
 
     @ManyToOne
     @JoinColumn(name = "lesson_cancellation_id")
+    @JsonView(LessonView.class)
     private LessonCancellationReason lessonCancellationReason;
 
     @ManyToOne
     @JoinColumn(name = "coach_id")
+    @JsonView(LessonView.class)
     private Coach coach;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "template_id", nullable = false)
+    @JsonView(LessonView.class)
     private Template template;
 
 //    @OneToMany(mappedBy = "lesson", cascade = CascadeType.ALL, orphanRemoval = true)
 
     @OneToMany(mappedBy = "lesson")
+    @JsonView(LessonView.class)
     private List<Enrollment> enrollments;
 
 }

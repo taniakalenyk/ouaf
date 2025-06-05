@@ -12,7 +12,7 @@ token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBvdWFmLmFjYWRlbXkiLCJyb2xlIjoiUk
 type = 'JSON'
 raw = '''
 {
-  "email": "admin@ouaf.academy",
+  "email": "owner@ouaf.academy",
   "password": "12345"
 }'''
 ```

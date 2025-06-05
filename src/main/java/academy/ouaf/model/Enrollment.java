@@ -1,6 +1,8 @@
 package academy.ouaf.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import academy.ouaf.views.LessonView;
+
+import com.fasterxml.jackson.annotation.JsonView;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,16 +18,19 @@ public class Enrollment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonView(LessonView.class)
     protected Long enrollmentId;
 
     @CreatedDate
     @Column(nullable = false)
+    @JsonView(LessonView.class)
     private LocalDateTime dateCreation;
 
     private LocalDateTime paymentDate;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "dog_id", nullable = false)
+    @JsonView(LessonView.class)
     private Dog dog;
 
     @ManyToOne(optional = false)
@@ -39,6 +44,4 @@ public class Enrollment {
     @ManyToOne
     @JoinColumn(name = "admin_id")
     private Admin admin;
-
-
 }

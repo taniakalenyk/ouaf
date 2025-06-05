@@ -5,7 +5,6 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.Map;
 
 @Service
@@ -34,7 +33,7 @@ public class SecurityUtils implements ISecurityUtils {
                         "id", userDetails.getUserId()
                 ))
                 .signWith(SignatureAlgorithm.HS256, jwtSecret)
-                .setExpiration(new Date(System.currentTimeMillis() + jwtExpiration))
+//                .setExpiration(new Date(System.currentTimeMillis() + jwtExpiration))
                 .compact();
     }
 
