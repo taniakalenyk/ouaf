@@ -28,6 +28,7 @@
 	</scm>
 	<properties>
 		<java.version>21</java.version>
+		<final.jar.name>app</final.jar.name>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -96,6 +97,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>${final.jar.name}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -124,6 +126,25 @@
 					</excludes>
 				</configuration>
 			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.5.3</version>
+				<configuration>
+					<!-- Inclure les tests unitaires -->
+					<includes>
+						<include>**/*Test.java</include>
+					</includes>
+					<!-- Exclure les tests d'intégration -->
+					<excludes>
+						<exclude>**/*ApplicationTests.java</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+
+
+
 		</plugins>
 	</build>
 

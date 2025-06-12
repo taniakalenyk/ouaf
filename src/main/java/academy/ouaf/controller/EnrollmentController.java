@@ -2,6 +2,10 @@ package academy.ouaf.controller;
 
 import academy.ouaf.dao.EnrollmentDao;
 import academy.ouaf.model.Enrollment;
+import academy.ouaf.views.DogView;
+import academy.ouaf.views.EnrollmentView;
+import academy.ouaf.views.OwnerView;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,12 +25,14 @@ public class EnrollmentController {
         this.enrollmentDao = enrollmentDao;
     }
 
+    @JsonView({EnrollmentView.class})
     @GetMapping
     public ResponseEntity<List<Enrollment>> getAllEnrollments() {
         List<Enrollment> enrollments = enrollmentDao.findAll();
         return new ResponseEntity<>(enrollments, HttpStatus.OK);
     }
 
+    @JsonView({EnrollmentView.class})
     @GetMapping("/{id}")
     public ResponseEntity<Enrollment> getEnrollmentById(@PathVariable Long id) {
         Enrollment enrollment = enrollmentDao.findById(id).orElse(null);

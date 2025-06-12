@@ -1,7 +1,10 @@
 package academy.ouaf.model;
 
+import academy.ouaf.views.DogView;
+import academy.ouaf.views.EnrollmentView;
 import academy.ouaf.views.LessonView;
 
+import academy.ouaf.views.OwnerView;
 import com.fasterxml.jackson.annotation.JsonView;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -18,7 +21,7 @@ public class Enrollment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonView(LessonView.class)
+    @JsonView({LessonView.class, EnrollmentView.class, DogView.class})
     protected Long enrollmentId;
 
     @CreatedDate
@@ -30,15 +33,17 @@ public class Enrollment {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "dog_id", nullable = false)
-    @JsonView(LessonView.class)
+    @JsonView({LessonView.class, EnrollmentView.class})
     private Dog dog;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "lesson_id", nullable = false)
+    @JsonView({EnrollmentView.class, DogView.class})
     private Lesson lesson;
 
     @ManyToOne
     @JoinColumn(name = "enrollment_cancellation_id")
+    @JsonView(EnrollmentView.class)
     private EnrollmentCancellationReason enrollmentCancellationReason;
 
     @ManyToOne

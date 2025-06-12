@@ -1,6 +1,7 @@
 package academy.ouaf.model;
 
 import academy.ouaf.views.DogView;
+import academy.ouaf.views.EnrollmentView;
 import academy.ouaf.views.LessonView;
 import academy.ouaf.views.OwnerView;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -28,10 +29,10 @@ public class Dog {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonView({DogView.class, OwnerView.class, LessonView.class})
+    @JsonView({DogView.class, OwnerView.class, LessonView.class, EnrollmentView.class})
     protected Long dogId;
 
-    @JsonView({DogView.class, OwnerView.class, LessonView.class})
+    @JsonView({DogView.class, OwnerView.class, LessonView.class, EnrollmentView.class})
     @Column(nullable = false, length = 20)
     @NotNull(message = "Le nom du chien ne peut pas être vide")
     @Size(min = 2, max = 20, message = "Le nom du chien doit contenir entre 2 et 20 caractères")
@@ -42,7 +43,7 @@ public class Dog {
     protected Boolean gender; // true for female, false for male
 
     @Column(nullable = false)
-    @JsonView(DogView.class)
+    @JsonView({DogView.class,EnrollmentView.class})
     @NotNull(message = "La date de naissance du chien est obligatoire")
     @PastOrPresent(message = "La date de naissance ne peut pas être dans le futur")
     protected LocalDate birthDate;
@@ -63,6 +64,7 @@ public class Dog {
     @Column(nullable = false, updatable = false)
     private LocalDateTime registrationDate;
 
+    @JsonView(DogView.class)
     @OneToMany
     protected Set<Enrollment> enrollments;
 

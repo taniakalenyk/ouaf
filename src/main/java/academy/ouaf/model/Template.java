@@ -1,5 +1,6 @@
 package academy.ouaf.model;
 
+import academy.ouaf.views.EnrollmentView;
 import academy.ouaf.views.LessonView;
 import com.fasterxml.jackson.annotation.JsonView;
 import jakarta.persistence.*;
@@ -22,7 +23,7 @@ public class Template {
 
     @Column(nullable = false, length = 30)
     @Size(max = 30, min = 1)
-    @JsonView(LessonView.class)
+    @JsonView({LessonView.class, EnrollmentView.class})
     protected Short capacity;
 
     @Column(precision = 10, scale = 2, nullable = false) // The column can store 8 digits before the decimal, 2 after = 10 total).
@@ -35,12 +36,12 @@ public class Template {
 
     @ManyToOne
     @JoinColumn(name = "type_id", nullable = false)
-    @JsonView(LessonView.class)
+    @JsonView({LessonView.class, EnrollmentView.class})
     protected Type type;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "age_id", nullable = false)
-    @JsonView(LessonView.class)
+    @JsonView({LessonView.class})
     protected AgeRange ageRange;
 
     @OneToMany(mappedBy = "template")

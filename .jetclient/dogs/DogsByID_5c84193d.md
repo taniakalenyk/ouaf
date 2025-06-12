@@ -1,7 +1,7 @@
 ```toml
 name = 'DogsByID'
 method = 'GET'
-url = 'http://localhost:8080/api/dogs/1'
+url = 'http://localhost:8080/api/dogs/2'
 sortWeight = 3000000
 id = '5c84193d-7783-47a0-a561-c549d4a12c26'
 
