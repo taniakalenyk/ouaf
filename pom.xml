@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>academy.ouaf</groupId>
 	<artifactId>OUAF</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>OUAF</name>
 	<description>OUAF</description>
 	<url/>
