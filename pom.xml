@@ -97,14 +97,13 @@
 	</dependencies>
 
 	<build>
-		<finalName>${final.jar.name}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>17</source>
-					<target>17</target>
+					<source>21</source>
+					<target>21</target>
 					<annotationProcessorPaths>
 						<path>
 							<groupId>org.projectlombok</groupId>

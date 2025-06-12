@@ -1,9 +1,9 @@
 ```toml
-name = 'ownersByID'
+name = 'adminByID'
 method = 'GET'
-url = 'http://localhost:8080/api/owners/3'
+url = 'http://localhost:8080/api/admins/1'
 sortWeight = 3000000
-id = '6582180d-4ee3-4087-bbb4-da3ad29de4d5'
+id = 'c62d3077-af8f-4400-ac40-0e5a5bc96596'
 
 [auth.bearer]
 token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvd25lckBvdWFmLmFjYWRlbXkiLCJpZCI6Mywicm9sZSI6IlJPTEVfT1dORVIifQ.eCY4E49_ypEa_XvMipHyyX-gSN25XDcHeWbuFAgvvyQ'

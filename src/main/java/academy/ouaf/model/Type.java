@@ -1,7 +1,11 @@
 package academy.ouaf.model;
 
+import academy.ouaf.views.EnrollmentView;
+import academy.ouaf.views.LessonView;
+import academy.ouaf.views.OwnerView;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonView;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -22,6 +26,7 @@ public class Type {
 
     @Column
     @NotNull
+    @JsonView({LessonView.class, EnrollmentView.class})
     protected String typeAppointment;
 
     @OneToMany(mappedBy = "type")

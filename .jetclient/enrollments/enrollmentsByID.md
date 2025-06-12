@@ -1,12 +1,12 @@
 ```toml
-name = 'ownersByID'
+name = 'enrollmentsByID'
 method = 'GET'
-url = 'http://localhost:8080/api/owners/3'
+url = 'http://localhost:8080/api/enrollments/1'
 sortWeight = 3000000
-id = '6582180d-4ee3-4087-bbb4-da3ad29de4d5'
+id = '0a1b012d-852f-475c-b722-6439b52e968d'
 
 [auth.bearer]
-token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvd25lckBvdWFmLmFjYWRlbXkiLCJpZCI6Mywicm9sZSI6IlJPTEVfT1dORVIifQ.eCY4E49_ypEa_XvMipHyyX-gSN25XDcHeWbuFAgvvyQ'
+token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvd25lckBvdWFmLmFjYWRlbXkiLCJyb2xlIjoiUk9MRV9PV05FUiIsImlkIjozfQ.tTJQsWMdn4JND76zNKk3UG-SfCFt46Oe-j4jezjwzjM'
 
 [body]
 type = 'JSON'

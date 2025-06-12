@@ -1,12 +1,12 @@
 ```toml
-name = 'dogs'
+name = 'owners'
 method = 'GET'
-url = 'http://localhost:8080/api/dogs'
+url = 'http://localhost:8080/api/owners'
 sortWeight = 2000000
-id = '1fa25f5b-af1e-4d42-a7c9-63921db06b53'
+id = 'a7d4f001-fa6d-4443-952f-57d45ebcaec1'
 
 [auth.bearer]
-token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvd25lckBvdWFmLmFjYWRlbXkiLCJpZCI6Mywicm9sZSI6IlJPTEVfT1dORVIifQ.eCY4E49_ypEa_XvMipHyyX-gSN25XDcHeWbuFAgvvyQ'
+token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvd25lckBvdWFmLmFjYWRlbXkiLCJpZCI6Mywicm9sZSI6IlJPTEVfT1dORVIifQ.eCY4E49_ypEa_XvMipHyyX-gSN25XDcHeWbuFAgvvyQ '
 
 [body]
 type = 'JSON'

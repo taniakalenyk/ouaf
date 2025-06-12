@@ -2,6 +2,8 @@ package academy.ouaf.controller;
 
 import academy.ouaf.dao.DogDao;
 import academy.ouaf.model.Dog;
+import academy.ouaf.views.DogView;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,13 +25,14 @@ public class DogController {
     }
 
     @GetMapping
+    @JsonView(DogView.class)
     public ResponseEntity<List<Dog>> getAllDogs() {
         List<Dog> dogs = dogDao.findAll();
         return new ResponseEntity<>(dogs, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    // @JsonView(DogView
+    @JsonView(DogView.class)
     public ResponseEntity<Dog> getDogById(@PathVariable Long id) {
         Optional<Dog> optionalDog = dogDao.findById(id);
         if (optionalDog.isPresent()) {
@@ -72,7 +75,7 @@ public class DogController {
             dog.setNotes(dogDetails.getNotes());
             dog.setOwner(dogDetails.getOwner());
             dog.setPrimaryBreed(dogDetails.getPrimaryBreed());
-//            dog.setSecondaryBreed(dogDetails.getSecondaryBreed());
+            dog.setSecondaryBreed(dogDetails.getSecondaryBreed());
             dog.setVeterinarian(dogDetails.getVeterinarian());
             dog.setVaccinations(dogDetails.getVaccinations());
             return new ResponseEntity<>(dogDao.save(dog), HttpStatus.OK);

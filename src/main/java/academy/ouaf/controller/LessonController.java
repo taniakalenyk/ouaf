@@ -2,6 +2,8 @@ package academy.ouaf.controller;
 
 import academy.ouaf.dao.LessonDao;
 import academy.ouaf.model.Lesson;
+import academy.ouaf.views.LessonView;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +24,7 @@ public class LessonController {
     }
 
     @GetMapping
+    @JsonView(LessonView.class)
     public ResponseEntity<List<Lesson>> getAllLessons() {
         List<Lesson> lessons = lessonDao.findAll();
         return new ResponseEntity<>(lessons, HttpStatus.OK);

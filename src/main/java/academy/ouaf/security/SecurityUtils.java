@@ -5,7 +5,6 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.Map;
 
 @Service
@@ -29,9 +28,12 @@ public class SecurityUtils implements ISecurityUtils {
     public String generateToken(AppUserDetails userDetails) {
         return Jwts.builder()
                 .setSubject(userDetails.getUsername())
-                .addClaims(Map.of("roles", getRole(userDetails)))
+                .addClaims(Map.of(
+                        "role", getRole(userDetails),
+                        "id", userDetails.getUserId()
+                ))
                 .signWith(SignatureAlgorithm.HS256, jwtSecret)
-                .setExpiration(new Date(System.currentTimeMillis() + jwtExpiration))
+//                .setExpiration(new Date(System.currentTimeMillis() + jwtExpiration))
                 .compact();
     }
 
