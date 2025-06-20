@@ -43,7 +43,7 @@ public class Dog {
     protected Boolean gender; // true for female, false for male
 
     @Column(nullable = false)
-    @JsonView({DogView.class,EnrollmentView.class})
+    @JsonView({DogView.class, OwnerView.class, EnrollmentView.class})
     @NotNull(message = "La date de naissance du chien est obligatoire")
     @PastOrPresent(message = "La date de naissance ne peut pas être dans le futur")
     protected LocalDate birthDate;
