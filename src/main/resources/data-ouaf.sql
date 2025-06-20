@@ -158,7 +158,7 @@ VALUES
     (1,
      'Bella',
      true,
-     '2025-04-15',
+     '2025-05-15',
      '3.jpg',
      8.2,
      'Je n’ai pas de maladies ou allergies. J’aime jouer, courir, manger et embêter mon ami chat.',
@@ -171,7 +171,7 @@ VALUES
     (2,
      'Lou',
      true,
-     '2024-08-09',
+     '2022-08-09',
      '15.jpg',
      14.5,
      'Chien croisé calme, habitué aux autres animaux.',
@@ -295,12 +295,12 @@ INSERT INTO lessons (lesson_id, start_date_time, end_date_time, location, lesson
 VALUES
     (1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Parc de la Seille, Metz', NULL, 2, 1),
     (2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Parc de la Seille, Metz', NULL, 2, 4),
-    (3, '2025-06-10 15:00:00', '2025-06-10 16:00:00', 'Parc de la Seille, Metz', NULL, 2, 5),
+    (3, '2025-06-13 15:00:00', '2025-06-10 16:00:00', 'Parc de la Seille, Metz', NULL, 2, 5),
     (4, '2025-06-18 09:00:00', '2025-06-18 09:45:00', 'Parc de la Seille, Metz', NULL, 2, 9),
-    (5, '2025-06-18 09:00:00', '2025-06-18 10:00:00', 'Parc de la Seille, Metz', NULL, 2, 2),
-    (6, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Plan d''Eau, Metz', NULL, 2, 7),
-    (7, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Plan d''Eau, Metz', NULL, 2, 4),
-    (8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Plan d''Eau, Metz', NULL, 2, 7),
+    (5, '2025-06-19 09:00:00', '2025-06-18 10:00:00', 'Parc de la Seille, Metz', NULL, 2, 2),
+    (6, '2025-06-14 15:00:00', '2025-06-14 15:00:00', 'Plan d''Eau, Metz', NULL, 2, 7),
+    (7, '2025-06-15 15:00:00', '2025-06-15 15:00:00', 'Plan d''Eau, Metz', NULL, 2, 4),
+    (8, '2025-06-16 15:00:00', '2025-06-16 15:00:00', 'Plan d''Eau, Metz', NULL, 2, 7),
     (9, '2025-06-18 09:00:00', '2025-06-18 10:00:00', 'Parc de la Seille, Metz', NULL, 2, 2),
     (10, '2025-06-20 10:00:00', '2025-06-20 11:00:00', 'Jardin Botanique, Metz', NULL, 2, 1),
     (11, '2025-06-22 09:00:00', '2025-06-22 09:45:00', 'Jardin Botanique, Metz', NULL, 2, 2),
@@ -337,12 +337,12 @@ VALUES
 INSERT INTO enrollments (enrollment_id, date_creation, payment_date, dog_id, lesson_id, enrollment_cancellation_id,
                          admin_id)
 VALUES (1, '2025-06-04 10:00:00', '2025-06-05 09:00:00', 1, 1, NULL, 1), -- Max inscrit au dressage chiot, payé
-       (2, '2025-06-01 10:10:00', '2025-06-05 09:10:00', 1, 2, NULL, 1), -- Bella à l’agility, payé
+       (2, '2025-06-01 10:10:00', '2025-06-05 09:10:00', 5, 2, NULL, 1), -- Bella à l’agility, payé
        (3, '2025-06-01 10:20:00', NULL, 2, 3, NULL, 1),                  -- Rocky comportement, en attente (pas encore payé)
        (4, '2025-06-13 10:30:00', '2025-06-13 08:30:00', 2, 4, NULL, 1), -- Luna à un atelier, payé
-       (5, '2025-06-01 10:40:00', NULL, 3, 1, 1, 1),                     -- Charlie a annulé comportement, raison #1
+       (5, '2025-06-01 10:40:00', NULL, 3, 2, 1, 1),                     -- Charlie a annulé comportement, raison #1
        (6, '2025-06-04 10:00:00', '2025-06-05 09:00:00', 3, 5, NULL, 1), -- Max inscrit au dressage chiot, payé
        (7, '2025-06-01 10:10:00', '2025-06-05 09:10:00', 4, 6, NULL, 1), -- Bella à l’agility, payé
-       (8, '2025-06-01 10:20:00', NULL, 2, 1, NULL, 1),                  -- Rocky comportement, en attente (pas encore payé)
-       (9, '2025-06-13 10:30:00', '2025-06-13 08:30:00', 5, 1, NULL, 1), -- Luna à un atelier, payé
-       (10, '2025-06-01 10:40:00', NULL, 5, 5, NULL, 1); -- Charlie a annulé comportement, raison #1
+       (8, '2025-06-01 10:20:00', NULL, 2, 7, NULL, 1),                  -- Rocky comportement, en attente (pas encore payé)
+       (9, '2025-06-13 10:30:00', '2025-06-13 08:30:00', 1, 8, NULL, 1), -- Luna à un atelier, payé
+       (10, '2025-06-01 10:40:00', NULL, 5, 9, NULL, 1); -- Charlie a annulé comportement, raison #1
