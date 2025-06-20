@@ -1,5 +1,6 @@
 # Utiliser une image de base officielle Java
-FROM openjdk:17-jdk-alpine
+#FROM openjdk:17-jdk-alpine
+FROM amazoncorretto:17-alpine
 
 # Définir le répertoire de travail
 WORKDIR /app

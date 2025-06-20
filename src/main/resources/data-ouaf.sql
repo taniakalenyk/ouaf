@@ -274,7 +274,7 @@ VALUES
 
 INSERT INTO vaccines (vaccine_id, vaccine_name)
 VALUES
-    (1, 'CHP - Côtéra des Canins, Hépatite et Parvovirose'),
+    (1, 'CHP - Cotera des Canins, Hépatite et Parvovirose'),
     (2, 'Leptospirose canine'),
     (3, 'Rage'),
     (4, 'Toux du chenil - Parainfluenza et Bordetella bronchiseptica'),
@@ -308,7 +308,7 @@ VALUES
     (13, '2025-06-26 15:00:00', '2025-06-26 16:00:00', 'Parc du Pas du Loup, Woippy', NULL, 2, 4),
     (14, '2025-06-28 11:00:00', '2025-06-28 11:30:00', 'Parc de la Seille, Metz', NULL, 2, 5),
     (15, '2025-06-29 13:00:00', '2025-06-29 13:45:00', 'Plan d''Eau, Metz', NULL, 2, 6),
-    (16, '2025-07-01 10:30:00', '2025-07-01 11:00:00', 'Bois de Coulmière, Montigny', NULL, 2, 7),
+    (16, '2025-07-01 10:30:00', '2025-07-01 11:00:00', 'Bois de Coulmiere, Montigny', NULL, 2, 7),
     (17, '2025-07-03 14:30:00', '2025-07-03 15:00:00', 'Plan d''Eau, Metz', NULL, 2, 8),
     (18, '2025-07-05 16:00:00', '2025-07-05 17:00:00', 'Parc de la Seille, Metz', NULL, 2, 9),
     (19, '2025-07-07 09:00:00', '2025-07-07 10:00:00', 'Parc de la Seille, Metz', NULL, 2, 1),
@@ -318,7 +318,7 @@ VALUES
     (23, '2025-07-11 11:00:00', '2025-07-11 11:45:00', 'Parc du Pas du Loup, Woippy', NULL, 2, 9),
     (24, '2025-07-12 13:30:00', '2025-07-12 14:30:00', 'Plan d''Eau, Metz', NULL, 2, 4),
     (25, '2025-07-13 09:00:00', '2025-07-13 10:00:00', 'Parc de la Seille, Metz', NULL, 2, 1),
-    (26, '2025-07-14 14:00:00', '2025-07-14 14:30:00', 'Bois de Coulmière, Montigny', NULL, 2, 5),
+    (26, '2025-07-14 14:00:00', '2025-07-14 14:30:00', 'Bois de Coulmiere, Montigny', NULL, 2, 5),
     (27, '2025-07-15 16:00:00', '2025-07-15 17:00:00', 'Jardin Botanique, Metz', NULL, 2, 8),
     (28, '2025-07-16 11:00:00', '2025-07-16 12:00:00', 'Bois de la Grange-aux-Bois, Metz', NULL, 2, 7),
     (29, '2025-07-17 10:00:00', '2025-07-17 10:45:00', 'Plan d''Eau, Metz', NULL, 2, 3),
@@ -329,7 +329,7 @@ VALUES
     (34, '2025-07-22 09:30:00', '2025-07-22 10:00:00', 'Plan d''Eau, Metz', NULL, 2, 5),
     (35, '2025-07-23 16:00:00', '2025-07-23 17:00:00', 'Parc du Pas du Loup, Woippy', NULL, 2, 4),
     (36, '2025-07-24 11:00:00', '2025-07-24 12:00:00', 'Parc de la Seille, Metz', NULL, 2, 3),
-    (37, '2025-07-25 13:00:00', '2025-07-25 13:45:00', 'Bois de Coulmière, Montigny', NULL, 2, 7),
+    (37, '2025-07-25 13:00:00', '2025-07-25 13:45:00', 'Bois de Coulmiere, Montigny', NULL, 2, 7),
     (38, '2025-07-26 09:00:00', '2025-07-26 09:45:00', 'Jardin Botanique, Metz', NULL, 2, 2),
     (39, '2025-07-27 14:00:00', '2025-07-27 14:45:00', 'Plan d''Eau, Metz', NULL, 2, 8),
     (40, '2025-07-28 10:00:00', '2025-07-28 10:45:00', 'Parc de la Seille, Metz', NULL, 2, 9);
